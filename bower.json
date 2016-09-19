@@ -1,0 +1,22 @@
+{
+  "name": "laravel-vue-crud",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Heru Rusdianto <heru.rusdianto.93@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "vue-resource": "^1.0.1"
+  }
+}
