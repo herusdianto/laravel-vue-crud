@@ -1,4 +1,5 @@
 /node_modules
+/resources/assets/bower_components
 /public/storage
 /vendor
 /.idea
