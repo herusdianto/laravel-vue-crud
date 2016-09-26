@@ -66,7 +66,7 @@ class StudentsController extends Controller
      */
     public function show($id)
     {
-        //
+        return Student::findOrFail($id);
     }
 
     /**
