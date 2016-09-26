@@ -13,8 +13,20 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+// Vue.component('example', require('./components/Example.vue'));
+
+Vue.component('vuetable', Vuetable);
+Vue.component('vuetable-pagination', VuetablePagination);
+Vue.component('vuetable-pagination-dropdown', VuetablePaginationDropdown);
+
+import Actions from './components/Actions.vue';
+
+Vue.component('actions', Actions);
+
+Vue.use(VueRouter);
 
 const app = new Vue({
-    el: 'body'
+    el: '#app',
 });
+
+require('./routes');
