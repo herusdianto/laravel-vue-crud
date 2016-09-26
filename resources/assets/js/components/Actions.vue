@@ -1,4 +1,4 @@
-<template>
+<template v-cloak>
     <div class="btn-group" role="group" aria-label="Actions">
         <button type="button" class="btn btn-primary btn-xs" @click="showData(rowData)">
             <i class="glyphicon glyphicon-eye-open"></i>
@@ -21,13 +21,13 @@
             }
         },
         methods: {
-            showData: function(rowData) {
+            showData(rowData) {
                 this.$dispatch('showData', rowData);
             },
-            editData: function(rowData) {
+            editData(rowData) {
                 this.$dispatch('editData', rowData);
             },
-            deleteData: function(rowData) {
+            deleteData(rowData) {
                 this.$dispatch('deleteData', rowData);
             },
         }

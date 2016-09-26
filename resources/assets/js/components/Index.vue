@@ -1,4 +1,4 @@
-<template>
+<template v-cloak>
     <div class="row">
         <div class="col-md-5">
             <div class="form-inline form-group">
@@ -112,15 +112,15 @@
             }
         },
         watch: {
-            'perPage': function(val, oldVal) {
-                this.$broadcast('vuetable:refresh', val)
+            'perPage' (newValue, oldValue) {
+                this.$broadcast('vuetable:refresh')
             },
         },
         methods: {
             /**
              * Other functions
              */
-            setFilter: function() {
+            setFilter() {
                 this.appendParams = [
                     'search=' + this.search
                 ];
@@ -129,21 +129,21 @@
                     this.$broadcast('vuetable:refresh')
                 })
             },
-            resetFilter: function() {
-                this.search = ''
+            resetFilter() {
+                this.search = '';
 
                 this.setFilter()
             },
-            preg_quote: function( str ) {
+            preg_quote( str ) {
                 return (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
             },
-            highlight: function(needle, haystack) {
+            highlight(needle, haystack) {
                 return haystack.replace(
-                        new RegExp('(' + this.preg_quote(needle) + ')', 'ig'),
-                        '<span class="highlight">$1</span>'
+                    new RegExp('(' + this.preg_quote(needle) + ')', 'ig'),
+                    '<span class="highlight">$1</span>'
                 )
             },
-            paginationConfig: function(componentName) {
+            paginationConfig(componentName) {
                 this.$broadcast('vuetable-pagination:set-options', {
                     wrapperClass: 'pagination pull-right',
                     icons: {
@@ -159,7 +159,7 @@
             }
         },
         events: {
-            'vuetable:load-success': function(response) {
+            'vuetable:load-success' (response) {
                 var data = response.data.data;
 
                 if (this.search !== '') {
@@ -169,20 +169,20 @@
                     }
                 }
             },
-            'vuetable:load-error': function(response) {
+            'vuetable:load-error' (response) {
                 if (response.status == 400) {
-                    console.log('Something\'s Wrong!', response.data.message, 'error')
+                    console.error('Something\'s Wrong!', response.data.message, 'error')
                 } else {
-                    console.log('Oops', E_SERVER_ERROR, 'error')
+                    console.error('Oops', E_SERVER_ERROR, 'error')
                 }
             },
-            'showData': function(rowData) {
-                console.log('showData', rowData)
+            'showData' (rowData) {
+                this.$route.router.go({ name: 'show', params: { studentId: rowData.id }})
             },
-            'editData': function(rowData) {
+            'editData' (rowData) {
                 console.log('editData', rowData)
             },
-            'deleteData': function(rowData) {
+            'deleteData' (rowData) {
                 console.log('deleteData', rowData)
             },
         }
