@@ -159,17 +159,6 @@
             }
         },
         events: {
-            'vuetable:action': function(action, data) {
-                let id = data.id;
-
-                if (action == 'show') {
-                    console.log('show', id)
-                } else if (action == 'edit') {
-                    console.log('edit', id)
-                } else if (action == 'delete') {
-                    console.log('delete', id)
-                }
-            },
             'vuetable:load-success': function(response) {
                 var data = response.data.data;
 
