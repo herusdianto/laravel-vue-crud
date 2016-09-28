@@ -37,9 +37,7 @@
             submit(formData) {
                 this.$http.post(this.url, formData)
                     .then(response => {
-
                         this.$route.router.go({ name:'index' });
-
                     }).catch(response => {
                         let errors = response.body;
 
