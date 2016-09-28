@@ -3,12 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
+use App\Http\Services\StudentService;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Storage;
 
 class StudentsController extends Controller
 {
+    /**
+     * @var StudentService
+     */
+    private $studentService;
+
+    /**
+     * StudentsController constructor.
+     * @param StudentService $studentService
+     */
+    public function __construct(StudentService $studentService)
+    {
+        $this->studentService = $studentService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +42,7 @@ class StudentsController extends Controller
 
         $page = $request->page;
 
-        $per_page = $request->per_page;
+        $perPage = $request->per_page;
 
         $search = $request->search;
 
@@ -36,7 +53,7 @@ class StudentsController extends Controller
                 ->orWhere('email', 'LIKE', '%' . $search . '%');
         }
 
-        return $query->paginate($per_page);
+        return $query->paginate($perPage);
     }
 
     /**
@@ -50,19 +67,10 @@ class StudentsController extends Controller
         $student = new Student();
 
         if ($request->hasFile('avatar')) {
-            $fileName = str_random(30);
-            $extension = $request->avatar->extension();
-            $fullFileName = "{$fileName}.{$extension}";
-
-            if($request->avatar->storeAs('public/avatars', $fullFileName)) {
-                $student->avatar = $fullFileName;
-            }
+            $this->studentService->uploadAvatar($request, $student);
         }
 
-        $student->name = $request->name;
-        $student->email = $request->email;
-        $student->birth_date = $request->birth_date;
-        $student->save();
+        $this->studentService->saveStudent($request, $student);
 
         return response(null, Response::HTTP_CREATED);
     }
@@ -81,13 +89,23 @@ class StudentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UpdateStudentRequest $request
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateStudentRequest $request, $id)
     {
-        //
+        $student = Student::findOrFail($id);
+
+        if ($request->hasFile('avatar')) {
+            $this->studentService->deleteCurrentAvatar($student);
+
+            $this->studentService->uploadAvatar($request, $student);
+        }
+
+        $this->studentService->saveStudent($request, $student);
+
+        return response(null, Response::HTTP_CREATED);
     }
 
     /**
