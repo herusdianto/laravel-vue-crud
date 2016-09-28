@@ -1,17 +1,18 @@
 const router = new VueRouter();
 
-const index = require('./components/Index.vue');
-const show = require('./components/Show.vue');
-
 router.map({
     '/': {
         name: 'index',
-        component: index
+        component: require('./components/Index.vue')
     },
     '/show/:studentId': {
         name: 'show',
-        component: show
-    }
+        component: require('./components/Show.vue')
+    },
+    '/create': {
+        name: 'create',
+        component: require('./components/Create.vue')
+    },
 });
 
 var App = Vue.extend({});
