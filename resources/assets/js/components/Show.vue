@@ -3,7 +3,11 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-6 text-center">
-                    <img :src="student.avatar" :alt="student.name" class="img-thumbnail img-responsive image-preview">
+                    <img
+                        :src="student.avatar"
+                        :alt="student.name"
+                        :title="student.name"
+                        class="img-thumbnail img-responsive image-preview">
                 </div>
 
                 <div class="col-md-6">
