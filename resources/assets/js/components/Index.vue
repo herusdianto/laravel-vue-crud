@@ -196,7 +196,18 @@
                 this.$route.router.go({ name: 'edit', params: { studentId: rowData.id } })
             },
             'deleteData'(rowData) {
-                console.log('deleteData', rowData)
+                let formData = new FormData();
+
+                formData.set('_method', 'DELETE');
+
+                let url = this.url + '/' + rowData.id;
+
+                this.$http.post(url, formData)
+                    .then(response => {
+                        this.$broadcast('vuetable:refresh')
+                    }).catch(response => {
+                        let errors = response.body;
+                    });
             },
         }
     }
