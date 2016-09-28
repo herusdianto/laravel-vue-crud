@@ -176,9 +176,9 @@
                 let data = response.data.data;
 
                 if (this.search !== '') {
-                    for (let n in data) {
-                        data[n].name = this.highlight(this.search, data[n].name)
-                        data[n].email = this.highlight(this.search, data[n].email)
+                    for (let index in data) {
+                        data[index].name = this.highlight(this.search, data[index].name);
+                        data[index].email = this.highlight(this.search, data[index].email)
                     }
                 }
             },
@@ -190,10 +190,10 @@
                 }
             },
             'showData'(rowData) {
-                this.$route.router.go({name: 'show', params: {studentId: rowData.id}})
+                this.$route.router.go({ name: 'show', params: { studentId: rowData.id } })
             },
             'editData'(rowData) {
-                console.log('editData', rowData)
+                this.$route.router.go({ name: 'edit', params: { studentId: rowData.id } })
             },
             'deleteData'(rowData) {
                 console.log('deleteData', rowData)
