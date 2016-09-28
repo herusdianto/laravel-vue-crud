@@ -103,7 +103,13 @@
             imageSrc() {
                 if(this.student.avatar instanceof File === false) {
                     if(this.student.avatar !== undefined) {
-                        return '/storage/avatars/' + this.student.avatar;
+                        let avatar = this.student.avatar;
+
+                        if(! avatar) {
+                            avatar = 'default.png';
+                        }
+
+                        return '/storage/avatars/' + avatar;
                     }
                 }
             }
