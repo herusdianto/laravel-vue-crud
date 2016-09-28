@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -43,9 +42,3 @@ Vue.http.interceptors.push((request, next) => {
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
-window.VueRouter = require('vue-router');
-
-window.Vuetable = require('vuetable/src/components/Vuetable.vue');
-window.VuetablePagination = require('vuetable/src/components/VuetablePagination.vue');
-window.VuetablePaginationDropdown  = require('vuetable/src/components/VuetablePaginationDropdown.vue');
