@@ -42,6 +42,7 @@
                 :wrapper-class="wrapperClass"
                 :table-wrapper="tableWrapper"
                 :loading-class="loadingClass"
+                :pagination-component="paginationComponent"
         ></vuetable>
     </div>
 
@@ -64,46 +65,46 @@
                 fields: [
                     {
                         name: '__checkbox',
-                        titleClass: 'text-center',
+                        titleClass: 'text-center col-sm-1',
                         dataClass: 'text-center',
                     },
                     {
                         title: 'Index',
                         name: '__sequence',
-                        titleClass: 'text-center',
+                        titleClass: 'text-center col-sm-1',
                         dataClass: 'text-center',
                     },
                     {
                         title: 'Avatar',
-                        name: 'avatar',
-                        titleClass: 'text-center',
+                        name: '__component:avatar',
+                        titleClass: 'text-center col-sm-2',
                         dataClass: 'text-center',
                     },
                     {
                         title: 'Name',
                         name: 'name',
                         sortField: 'name',
-                        titleClass: 'text-center',
+                        titleClass: 'text-center col-sm-3',
                         dataClass: 'text-center',
                     },
                     {
                         title: 'Email',
                         name: 'email',
                         sortField: 'email',
-                        titleClass: 'text-center',
+                        titleClass: 'text-center col-sm-3',
                         dataClass: 'text-center',
                     },
                     {
                         title: 'Birth Date',
                         name: 'birth_date',
                         sortField: 'birth_date',
-                        titleClass: 'text-center',
+                        titleClass: 'text-center col-sm-1',
                         dataClass: 'text-center',
                     },
                     {
                         title: 'Actions',
                         name: '__component:actions',
-                        titleClass: 'text-center',
+                        titleClass: 'text-center col-sm-1',
                         dataClass: 'text-center',
                     },
                 ],
@@ -114,11 +115,12 @@
                     }
                 ],
                 tableClass: 'table table-bordered table-hover',
-                ascendingIcon: 'glyphicon glyphicon-chevron-up',
-                descendingIcon: 'glyphicon glyphicon-chevron-down',
+                ascendingIcon: 'glyphicon glyphicon-menu-up pull-right',
+                descendingIcon: 'glyphicon glyphicon-menu-down pull-right',
                 appendParams: [],
                 wrapperClass: 'vuetable-wrapper ',
-                tableWrapper: '.vuetable-wrapper'
+                tableWrapper: '.vuetable-wrapper',
+                paginationComponent: 'bootstrap-pagination'
             }
         },
         watch: {
@@ -166,8 +168,8 @@
                         last: ''
                     },
                     activeClass: 'active',
-                    linkClass: 'btn btn-default',
-                    pageClass: 'btn btn-default'
+                    linkClass: '',
+                    pageClass: ''
                 })
             }
         },
