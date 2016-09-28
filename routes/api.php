@@ -17,4 +17,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::resource('/students', 'StudentsController');
+Route::resource('/students', 'StudentsController', [
+    'except' => ['create', 'edit']
+]);
