@@ -1,5 +1,5 @@
 <template>
-    <form method="POST" action="/api/students" @submit.prevent="submit" novalidate v-cloak>
+    <form @submit.prevent="submit" novalidate v-cloak>
         <div class="row">
             <div class="col-md-6 text-center">
                 <image-input :image-src="imageSrc"></image-input>
@@ -96,7 +96,15 @@
         },
         data() {
             return {
-                errors: {
+                errors: {}
+            }
+        },
+        computed: {
+            imageSrc() {
+                if(this.student.avatar instanceof File === false) {
+                    if(this.student.avatar !== undefined) {
+                        return '/storage/avatars/' + this.student.avatar;
+                    }
                 }
             }
         },
@@ -104,7 +112,10 @@
             submit() {
                 let formData = new FormData();
 
-                formData.set('avatar', this.student.avatar);
+                if(this.student.avatar instanceof File) {
+                    formData.set('avatar', this.student.avatar);
+                }
+
                 formData.set('name', this.student.name);
                 formData.set('email', this.student.email);
                 formData.set('birth_date', this.student.birth_date);
