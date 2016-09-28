@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateStudentRequest;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class StudentsController extends Controller
 {
@@ -29,7 +31,7 @@ class StudentsController extends Controller
 
         $query = Student::orderBy($sortBy, $sortDirection);
 
-        if($search) {
+        if ($search) {
             $query = $query->where('name', 'LIKE', '%' . $search . '%')
                 ->orWhere('email', 'LIKE', '%' . $search . '%');
         }
@@ -50,12 +52,29 @@ class StudentsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param CreateStudentRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateStudentRequest $request)
     {
-        //
+        $student = new Student();
+
+        if ($request->hasFile('avatar')) {
+            $fileName = str_random(30);
+            $extension = $request->avatar->extension();
+            $fullFileName = "{$fileName}.{$extension}";
+
+            if($request->avatar->storeAs('public/avatars', $fullFileName)) {
+                $student->avatar = $fullFileName;
+            }
+        }
+
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->birth_date = $request->birth_date;
+        $student->save();
+
+        return response(null, Response::HTTP_CREATED);
     }
 
     /**
