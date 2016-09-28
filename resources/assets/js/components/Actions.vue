@@ -1,5 +1,5 @@
-<template v-cloak>
-    <div class="btn-group" role="group" aria-label="Actions">
+<template>
+    <div class="btn-group" role="group" aria-label="Actions" v-cloak>
         <button type="button" class="btn btn-primary btn-xs" @click="showData(rowData)">
             <i class="glyphicon glyphicon-eye-open"></i>
         </button>
