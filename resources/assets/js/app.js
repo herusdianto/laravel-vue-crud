@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * include Vue and Vue Resource. This gives a great starting point for
@@ -15,18 +14,10 @@ require('./bootstrap');
 
 // Vue.component('example', require('./components/Example.vue'));
 
-Vue.component('vuetable', Vuetable);
-Vue.component('vuetable-pagination', VuetablePagination);
-Vue.component('vuetable-pagination-dropdown', VuetablePaginationDropdown);
-
-import Actions from './components/Actions.vue';
-
-Vue.component('actions', Actions);
-
-Vue.use(VueRouter);
+require('./packages');
+require('./components');
+require('./routes');
 
 const app = new Vue({
     el: '#app',
 });
-
-require('./routes');
