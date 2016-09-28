@@ -40,8 +40,6 @@ class StudentsController extends Controller
         $sortBy = $sort[0];
         $sortDirection = $sort[1];
 
-        $page = $request->page;
-
         $perPage = $request->per_page;
 
         $search = $request->search;
@@ -49,8 +47,10 @@ class StudentsController extends Controller
         $query = Student::orderBy($sortBy, $sortDirection);
 
         if ($search) {
-            $query = $query->where('name', 'LIKE', '%' . $search . '%')
-                ->orWhere('email', 'LIKE', '%' . $search . '%');
+            $like = "%{$search}%";
+
+            $query = $query->where('name', 'LIKE', $like)
+                ->orWhere('email', 'LIKE', $like);
         }
 
         return $query->paginate($perPage);
