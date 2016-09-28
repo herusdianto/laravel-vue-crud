@@ -33,11 +33,22 @@
   font-size: 25px;
   cursor: pointer;
   opacity: 0;
-  filter: alpha(opacity=0)
+  filter: alpha(opacity=0);
 }
-.image-preview {
-  max-height: 215px
+.image-preview {;
+  max-height: 215px;
+}
+.avatar {
+  max-height: 100px;
 }
 .datepicker {
   display: block !important;
+}
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  vertical-align: middle !important;
 }
