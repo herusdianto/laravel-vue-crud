@@ -116,6 +116,10 @@ class StudentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::findOrFail($id);
+
+        $this->studentService->deleteCurrentAvatar($student);
+
+        Student::destroy($id);
     }
 }
