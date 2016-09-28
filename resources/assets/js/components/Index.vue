@@ -1,19 +1,22 @@
-<template v-cloak>
-    <div class="row">
-        <div class="col-md-5">
+<template>
+    <div class="row" v-cloak>
+        <div class="col-md-7">
             <div class="form-inline form-group">
                 <label>Search:</label>
-                <input v-model="search" class="form-control input-sm" @keyup.enter="setFilter">
-                <button class="btn btn-primary btn-sm" @click="setFilter">Go</button>
-                <button class="btn btn-default btn-sm" @click="resetFilter">Reset</button>
+
+                <input
+                    v-model="search"
+                    class="form-control"
+                    debounce="500"
+                >
             </div>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-5">
             <div class="dropdown form-inline pull-right">
                 <label>Per Page:</label>
 
-                <select class="form-control input-sm" v-model="perPage">
+                <select class="form-control" v-model="perPage">
                     <option value=10>10</option>
                     <option value=25>25</option>
                     <option value=50>50</option>
@@ -24,7 +27,7 @@
         </div>
     </div>
 
-    <div class="table-responsive">
+    <div class="table-responsive" v-cloak>
         <vuetable
                 :api-url="url"
                 :pagination-path="paginationPath"
@@ -40,6 +43,13 @@
                 :table-wrapper="tableWrapper"
                 :loading-class="loadingClass"
         ></vuetable>
+    </div>
+
+    <div class="text-center" v-cloak>
+        <button class="btn btn-default" v-link="{ name: 'create' }">
+            <i class="glyphicon glyphicon-plus"></i>
+            Create
+        </button>
     </div>
 </template>
 
@@ -112,7 +122,10 @@
             }
         },
         watch: {
-            'perPage' (newValue, oldValue) {
+            'search'(newValue, oldValue) {
+                this.setFilter()
+            },
+            'perPage'(newValue, oldValue) {
                 this.$broadcast('vuetable:refresh')
             },
         },
@@ -125,7 +138,7 @@
                     'search=' + this.search
                 ];
 
-                this.$nextTick(function() {
+                this.$nextTick(function () {
                     this.$broadcast('vuetable:refresh')
                 })
             },
@@ -134,8 +147,8 @@
 
                 this.setFilter()
             },
-            preg_quote( str ) {
-                return (str+'').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
+            preg_quote(str) {
+                return (str + '').replace(/([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g, "\\$1");
             },
             highlight(needle, haystack) {
                 return haystack.replace(
@@ -153,14 +166,14 @@
                         last: ''
                     },
                     activeClass: 'active',
-                    linkClass: 'btn btn-default btn-sm',
-                    pageClass: 'btn btn-default btn-sm'
+                    linkClass: 'btn btn-default',
+                    pageClass: 'btn btn-default'
                 })
             }
         },
         events: {
-            'vuetable:load-success' (response) {
-                var data = response.data.data;
+            'vuetable:load-success'(response) {
+                let data = response.data.data;
 
                 if (this.search !== '') {
                     for (let n in data) {
@@ -169,20 +182,20 @@
                     }
                 }
             },
-            'vuetable:load-error' (response) {
+            'vuetable:load-error'(response) {
                 if (response.status == 400) {
                     console.error('Something\'s Wrong!', response.data.message, 'error')
                 } else {
                     console.error('Oops', E_SERVER_ERROR, 'error')
                 }
             },
-            'showData' (rowData) {
-                this.$route.router.go({ name: 'show', params: { studentId: rowData.id }})
+            'showData'(rowData) {
+                this.$route.router.go({name: 'show', params: {studentId: rowData.id}})
             },
-            'editData' (rowData) {
+            'editData'(rowData) {
                 console.log('editData', rowData)
             },
-            'deleteData' (rowData) {
+            'deleteData'(rowData) {
                 console.log('deleteData', rowData)
             },
         }
