@@ -1,12 +1,26 @@
 <template>
-    <div class="btn-group" role="group" aria-label="Actions" v-cloak>
-        <button type="button" class="btn btn-primary btn-xs" @click="showData(rowData)">
+    <div class="btn-group-vertical" role="group" aria-label="Actions" v-cloak>
+        <button
+            type="button"
+            class="btn btn-primary btn-xs"
+            title="Show"
+            @click="showData(rowData)">
             <i class="glyphicon glyphicon-eye-open"></i>
         </button>
-        <button type="button" class="btn btn-warning btn-xs" @click="editData(rowData)">
+
+        <button
+            type="button"
+            class="btn btn-warning btn-xs"
+            title="Edit"
+            @click="editData(rowData)">
             <i class="glyphicon glyphicon-pencil"></i>
         </button>
-        <button type="button" class="btn btn-danger btn-xs" @click="deleteData(rowData)">
+
+        <button
+            type="button"
+            class="btn btn-danger btn-xs"
+            title="Update"
+            @click="deleteData(rowData)">
             <i class="glyphicon glyphicon-trash"></i>
         </button>
     </div>
