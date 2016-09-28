@@ -1,9 +1,9 @@
-<template v-cloak>
-    <div class="panel panel-default">
+<template>
+    <div class="panel panel-default" v-cloak>
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="" alt="" class="img-thumbnail img-responsive">
+                    <img :src="student.avatar" :alt="student.name" class="img-thumbnail img-responsive image-preview">
                 </div>
 
                 <div class="col-md-6">
@@ -27,8 +27,9 @@
     </div>
 
     <div class="text-center">
-        <button class="btn btn-default btn-sm" v-link="{ path: '/' }">
-            &laquo; Back
+        <button class="btn btn-default" v-link="{ name: 'index' }">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Back
         </button>
     </div>
 </template>
@@ -38,7 +39,13 @@
         created() {
             this.$http.get('/api/students/' + this.$route.params.studentId)
                 .then(response => {
-                    this.student = response.data
+                    this.student = response.data;
+
+                    if(! this.student.avatar) {
+                        this.student.avatar = 'default.png';
+                    }
+
+                    this.student.avatar = '/storage/avatars/' + this.student.avatar;
                 })
                 .catch(response => {
                     console.error('Error: ' + response.statusText);
