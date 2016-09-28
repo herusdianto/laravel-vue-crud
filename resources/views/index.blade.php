@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
 </head>
 <body>
-    <div class="container mrg-top-2" id="app">
+    <div class="container mrg-2em" id="app">
         <router-view></router-view>
     </div>
 
