@@ -14,6 +14,30 @@
 [v-cloak] {
   display: none;
 }
-.mrg-top-2 {
-  margin-top: 2em;
+.mrg-2em {
+  margin: 2em auto;
+}
+.mrg-top-1em {
+  margin-top: 1em;
+}
+.image-input {
+  position: relative;
+  overflow: hidden
+}
+.image-input input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0)
+}
+.image-preview {
+  max-height: 215px
+}
+.datepicker {
+  display: block !important;
 }
