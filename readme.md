@@ -1,6 +1,6 @@
 # Laravel & Vue JS CRUD Example
 
-### How to install
+### Install
 
 1. Open your terminal.
 
@@ -40,7 +40,7 @@
 
 11. Open `http://localhost:8000/` in your web browser.
 
-### Generate Dummy Data
+### Dummy Data
 
 1. Open your terminal and change directory to `laravel-vue-crud`.
 
@@ -54,7 +54,7 @@
     
 4. Hit `Enter`. You can create dummy data as many as you want.
 
-### For Development Purposes
+### Development
 
 1. Open your terminal and change directory to `laravel-vue-crud`.
 
@@ -69,5 +69,7 @@
 4. Make sure you have [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) installed and run this command:
 
     `gulp watch`
+    
+5. All files (components, etc) are located in `resources/assets`.
     
 Check out the demo [here](https://www.youtube.com/watch?v=pRHGYFC5vnk).
