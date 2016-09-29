@@ -69,3 +69,5 @@
 4. Make sure you have [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) installed and run this command:
 
     `gulp watch`
+    
+Need a demo? Check it on [youtube](https://www.youtube.com/watch?v=pRHGYFC5vnk).
