@@ -16,7 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "vue-resource": "^1.0.1"
+    "bootstrap": "^3.3.7"
   }
 }
