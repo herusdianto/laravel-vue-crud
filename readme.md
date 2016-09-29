@@ -70,4 +70,4 @@
 
     `gulp watch`
     
-Need a demo? Check it on [youtube](https://www.youtube.com/watch?v=pRHGYFC5vnk).
+Check out the demo [here](https://www.youtube.com/watch?v=pRHGYFC5vnk).
