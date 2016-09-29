@@ -40,6 +40,20 @@
 
 11. Open `http://localhost:8000/` in your web browser.
 
+### Generate Dummy Data
+
+1. Open your terminal and change directory to `laravel-vue-crud`.
+
+2. Run this command:
+
+    `php artisan tinker`
+    
+3. Type this script:
+
+    `factory(App\Student::class, 100)->create();`
+    
+4. Hit `Enter`. You can create dummy data as many as you want.
+
 ### For Development Purposes
 
 1. Open your terminal and change directory to `laravel-vue-crud`.
