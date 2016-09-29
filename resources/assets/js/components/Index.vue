@@ -209,18 +209,39 @@
                 this.$route.router.go({ name: 'edit', params: { studentId: rowData.id } })
             },
             'deleteData'(rowData) {
-                let formData = new FormData();
+                swal({
+                    title: 'Confirmation',
+                    text: 'Are you sure you want to delete this data?',
+                    type: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    showLoaderOnConfirm: true
+                }).then(() => {
+                    swal.disableButtons();
 
-                formData.set('_method', 'DELETE');
+                    let formData = new FormData();
 
-                let url = this.url + '/' + rowData.id;
+                    formData.set('_method', 'DELETE');
 
-                this.$http.post(url, formData)
-                    .then(response => {
-                        this.$broadcast('vuetable:refresh')
-                    }).catch(response => {
-                        let errors = response.body;
-                    });
+                    let url = this.url + '/' + rowData.id;
+
+                    Vue.http.post(url, formData)
+                        .then(response => {
+                            swal(
+                                'Success',
+                                'Your data has been deleted.',
+                                'success'
+                            );
+
+                            this.$broadcast('vuetable:refresh');
+                        }).catch(response => {
+                            swal(
+                                    'Error',
+                                    'Failed to delete your data.',
+                                    'error'
+                            );
+                        });
+                })
             },
         }
     }
