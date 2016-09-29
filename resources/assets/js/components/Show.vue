@@ -36,6 +36,8 @@
             Back
         </button>
     </div>
+
+    <notify :alert="alert"></notify>
 </template>
 
 <script>
@@ -52,12 +54,25 @@
                     this.student.avatar = '/storage/avatars/' + this.student.avatar;
                 })
                 .catch(response => {
-                    console.error('Error: ' + response.statusText);
+                    this.alert = {
+                        show: true,
+                        type: 'danger',
+                        title: 'Error',
+                        message: response.statusText
+                    };
+
+                    this.$broadcast('notify', this.alert);
                 });
         },
         data() {
             return {
-                student: {}
+                student: {},
+                alert: {
+                    show: false,
+                    type: null,
+                    title: null,
+                    message: null,
+                },
             };
         }
     }

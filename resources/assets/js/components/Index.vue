@@ -52,6 +52,8 @@
             Create
         </button>
     </div>
+
+    <notify :alert="alert"></notify>
 </template>
 
 <script>
@@ -120,7 +122,13 @@
                 appendParams: [],
                 wrapperClass: 'vuetable-wrapper ',
                 tableWrapper: '.vuetable-wrapper',
-                paginationComponent: 'bootstrap-pagination'
+                paginationComponent: 'bootstrap-pagination',
+                alert: {
+                    show: false,
+                    type: null,
+                    title: null,
+                    message: null,
+                },
             }
         },
         watch: {
@@ -185,11 +193,14 @@
                 }
             },
             'vuetable:load-error'(response) {
-                if (response.status == 400) {
-                    console.error('Something\'s Wrong!', response.data.message, 'error')
-                } else {
-                    console.error('Oops', E_SERVER_ERROR, 'error')
-                }
+                this.alert = {
+                    show: true,
+                    type: 'danger',
+                    title: 'Error',
+                    message: response.statusText
+                };
+
+                this.$broadcast('notify', this.alert);
             },
             'showData'(rowData) {
                 this.$route.router.go({ name: 'show', params: { studentId: rowData.id } })

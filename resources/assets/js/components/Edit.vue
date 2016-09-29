@@ -19,18 +19,25 @@
     export default {
         created() {
             this.$http.get('/api/students/' + this.studentId)
-                    .then(response => {
-                        this.student = response.data;
-                    })
-                    .catch(response => {
-                        console.error('Error: ' + response.statusText);
-                    });
+                .then(response => {
+                    this.student = response.data;
+                })
+                .catch(response => {
+                    let alert = {
+                        show: true,
+                        type: 'danger',
+                        title: 'Error',
+                        message: response.statusText
+                    };
+
+                    this.$broadcast('showAlert', alert);
+                });
         },
         data() {
             return {
                 studentId: this.$route.params.studentId,
                 url: '/api/students/',
-                student: {}
+                student: {},
             }
         },
         events: {
@@ -46,7 +53,14 @@
 
                 this.$http.post(url, formData)
                     .then(response => {
-                        this.$route.router.go({ name:'show', params: { studentId: this.studentId } });
+                        let alert = {
+                            show: true,
+                            type: 'success',
+                            title: 'Success',
+                            message: 'Student successfully updated.'
+                        };
+
+                        this.$broadcast('showAlert', alert);
                     }).catch(response => {
                         let errors = response.body;
 

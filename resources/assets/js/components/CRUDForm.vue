@@ -79,6 +79,8 @@
             </div>
         </div>
     </form>
+
+    <notify :alert="alert"></notify>
 </template>
 
 <script>
@@ -96,6 +98,12 @@
         },
         data() {
             return {
+                alert: {
+                    show: false,
+                    type: null,
+                    title: null,
+                    message: null,
+                },
                 errors: {}
             }
         },
@@ -135,6 +143,13 @@
             },
             'formErrors'(errors) {
                 this.errors = errors;
+            },
+            'showAlert'(alert) {
+                this.alert = alert;
+
+                this.$broadcast('notify', this.alert);
+
+                this.errors = {};
             },
         },
     }

@@ -52,3 +52,10 @@
 .table > tfoot > tr > td {
   vertical-align: middle !important;
 }
+.alert {
+  width: 20em;
+}
+.alert.top-right {
+  top: 1em !important;
+  right: 1em !important;;
+}

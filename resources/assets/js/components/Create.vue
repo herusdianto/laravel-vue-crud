@@ -37,12 +37,29 @@
             submit(formData) {
                 this.$http.post(this.url, formData)
                     .then(response => {
-                        this.$route.router.go({ name:'index' });
+                        let alert = {
+                            show: true,
+                            type: 'success',
+                            title: 'Success',
+                            message: 'Student successfully created.'
+                        };
+
+                        this.$broadcast('showAlert', alert);
+
+                        this.resetForm();
                     }).catch(response => {
                         let errors = response.body;
 
                         this.$broadcast('formErrors', errors);
                     });
+            },
+            resetForm() {
+                this.student = {
+                    avatar: '',
+                    name: '',
+                    email: '',
+                    birth_date: '',
+                }
             }
         }
     }
