@@ -1,27 +1,57 @@
-# Laravel PHP Framework
+# Laravel & Vue JS CRUD Example
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+### How to install
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+1. Open your terminal.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+2. Clone this repo:
 
-## Official Documentation
+    `git clone https://github.com/herusdianto/laravel-vue-crud.git`
+    
+3. Once finished, change directory to laravel-vue-crud:
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+    `cd laravel-vue-crud`
+    
+4. Install all laravel dependencies:
 
-## Contributing
+    `composer install`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+5. Copy .env file:
 
-## Security Vulnerabilities
+    `cp .env.example .env`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+6. Modify `DB_*` value in `.env` with your database config.
 
-## License
+7. Generate application key:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+    `php artisan key:generate`
+
+8. Run migration table:
+
+    `php artisan migrate`
+
+9. Create a symbolic link:
+
+    `php artisan storage:link`
+
+10. Serve the app:
+
+    `php artisan serve`
+
+11. Open `http://localhost:8000/` in your web browser.
+
+### For Development Purposes
+
+1. Open your terminal and change directory to `laravel-vue-crud`.
+
+2. Make sure you have [nodejs](https://nodejs.org/en/download/) installed and run this command:
+
+    `npm install`
+
+3. Make sure you have [bower](https://bower.io/#install-bower) installed and run this command:
+
+    `bower install`
+
+4. Make sure you have [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) installed and run this command:
+
+    `gulp watch`
